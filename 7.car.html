@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+<div id="app">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <caption class="h3 text-danger">购物车</caption>
+                    <tr>
+                        <th class="text-center">商品名称</th>
+                        <th class="text-center">商品价格</th>
+                        <th class="text-center">操作</th>
+                    </tr>
+                    <tr class="text-center" v-for="iphone in iphones">
+                        <td>{{iphone.name}}</td>
+                        <td>{{iphone.price}}</td>
+                        <td>
+                            <button class="btn btn-danger btn-xs" @click="deleteOne(iphone)">删除</button>
+                        </td>
+                    </tr>
+                    <tr v-show="iphones.length">
+                        <td colspan="3">
+                            <button class="btn btn-danger btn-sm pull-right"
+                                    @click="removeAll()"
+                            >删除全部</button>
+                        </td>
+                    </tr>
+                </table>
+                <form role="form">
+                    <div class="form-group">
+                        <label for="productname" class="control-label">商品名称</label>
+                        <input type="text" id="productname" class="form-control" placeholder="请输入商品名称"
+                        v-model="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="productprice" class="control-label">商品价格</label>
+                        <input type="text" id="productprice" class="form-control" placeholder="请输出商品价格"
+                        v-model="price">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" @click="add()" type="button">添加</button>
+                        <button class="btn btn-danger" type="reset">重置</button>
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="vue2.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            name:'',
+            price:'',
+            iphones: [{name: 'iphone5', price: 3000},
+                {name: 'iphone6', price: 3000}]
+        },
+        methods: {
+            deleteOne(product) {
+                this.iphones = this.iphones.filter((one) => {
+                        return one != product
+                    }
+                );
+            },
+            removeAll(){
+                this.iphones=[];
+            },
+            add(){
+                this.iphones.push({name:this.name,price:this.price});
+                this.name=this.price='';
+            }
+        }
+    });
+</script>
+</body>
+</html>

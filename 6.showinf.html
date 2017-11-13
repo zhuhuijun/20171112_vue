@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <div v-show="flag">是否为true</div>
+    <div v-show="ifflag">是否为true v-if 是dom</div>
+</div>
+<script src="vue2.js" type="text/javascript"></script>
+<script type="text/javascript">
+    new Vue({
+        el: '#app',
+        data: {
+            flag:false,
+            ifflag:true
+        }
+    })
+</script>
+</body>
+</html>
