@@ -1,14 +1,29 @@
 {
-  "name": "vue01",
+  "name": "vue",
   "version": "1.0.0",
-  "description": "",
+  "description": "vue",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "zhuhj",
+  "license": "MIT",
   "devDependencies": {
     "bootstrap": "^3.3.7"
-  }
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhuhuijun/20171112_vue.git"
+  },
+  "keywords": [
+    "vue",
+    "car"
+  ],
+  "bugs": {
+    "url": "https://github.com/zhuhuijun/20171112_vue/issues"
+  },
+  "homepage": "https://github.com/zhuhuijun/20171112_vue#readme"
 }
