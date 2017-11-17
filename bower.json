@@ -1,0 +1,27 @@
+{
+  "name": "vue",
+  "description": "vue",
+  "main": "index.js",
+  "authors": [
+    "zhuhj"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "car"
+  ],
+  "homepage": "https://github.com/zhuhuijun/20171112_vue",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "libs/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "vue": "^2.5.4",
+    "vue-resource": "^1.3.4"
+  }
+}
