@@ -6,6 +6,11 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link rel="stylesheet" href="bootstrap.css">
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
@@ -25,8 +30,8 @@
                         <button class="btn btn-primary" type="button" @click="leave()">添加留言</button>
                     </div>
                 </form>
-
-                <ul class="list-group">
+                <!--数据加载后移除此属性 -->
+                <ul class="list-group" v-cloak>
                     <li class="list-group-item" v-for="message in messages">
                         <p>标题:{{message.title}}</p>
                         <p>内容:{{message.content}}</p>
@@ -46,6 +51,11 @@
             title: '',
             content: '',
             messages: []
+        },
+        mounted() {
+            this.$http.get('/leaves').then(function (res) {
+                this.messages = res.body;
+            })
         },
         methods: {
             leave() {

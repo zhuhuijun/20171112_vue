@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div id="app">
+    {{msg}}
+    <button @click="update" type="button">修改</button>
+</div>
+<script src="vue2.js" type="text/javascript"></script>
+<script type="text/javascript">
+    //钩子函数
+    var vm = new Vue({
+        //el:'#app',
+        data: {
+            msg: 'hello'
+        },
+        methods:{
+          update(){
+              this.msg='hello,world!';
+          }
+        },
+        beforeCreate() {
+            console.info('info:%s', 'beforeCreate');
+        },
+        created() {
+            console.info('info:%s', 'created');
+        },
+        beforeMount() {
+            console.info('info:%s', 'beforeMount');
+        },
+        mounted(){
+            console.info('info:%s', 'mounted');
+        },
+        beforeUpdate (){
+            console.info('info:%s', 'beforeUpdate修改前');
+        },
+        updated(){
+            console.info('info:%s', 'updated修改后');
+        },
+        beforeDestroy() {
+            console.info('info:%s', 'beforeDestroy');
+        },
+        destroyed() {
+            console.info('info:%s', 'destroyed');
+        }
+    });
+    vm.$mount('#app');
+    //强制销毁，数据不会销毁
+    //vm.$destroy();
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+</head>
+<body>
+<div id="app">
+{{total}}-------------{{count}}
+</div>
+<script type="text/javascript" src="vue2.js"></script>
+<script type="text/javascript">
+var vm= new Vue({
+   el:'#app',
+    a:'aa',
+   data:{
+       msg:'hello,world',
+       price:20,
+       count:50
+   },
+    computed:{
+       total: {
+           get:function(){
+               return this.price * this.count;
+           },
+           set:function(total){
+               this.count = total/this.price;
+           }
+       }
+    }
+});
+vm.$watch('total',function (newval,oldval) {
+    console.info('neaval:%d,oldval:%d',newval,oldval);
+});
+vm.total=10000;
+vm.$el.style.background='red';
+
+console.info(vm.$data);
+console.info('options:%s',vm.$options.a);
+</script>
+</body>
+</html>

@@ -22,4 +22,10 @@ app.post('/leaves', function (req, res) {
         res.send(doc);
     });
     //res.send(data);
-})
+});
+app.get('/leaves', function (req, res) {
+    mongoose.model('Leave').find({}, function (err,doc) {
+        res.send(doc);
+    });
+    //res.send(data);
+});

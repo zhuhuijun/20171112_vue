@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div id="app">
+{{msg}}
+</div>
+<script src="vue1.js" type="text/javascript"></script>
+<script type="text/javascript">
+    //钩子函数
+    var vm =  new Vue({
+       //el:'#app',
+        data:{
+           msg:'hello'
+        },
+        init(){
+           console.info('init');
+        },
+        created(){
+            console.info('created','end');
+        },
+        beforeCompile(){
+            console.info('info:%s','beforeCompiled');
+        },
+        compiled(){
+            console.info('info:%s','compiled');
+        },
+        ready(){
+            console.info('info:%s','ready');
+        },
+        beforeDestroy(){
+            console.info('info:%s','beforeDestroy');
+        },
+        destroyed(){
+            console.info('info:%s','destroyed');
+        }
+    });
+    vm.$mount('#app');
+    //强制销毁，数据不会销毁
+    vm.$destroy();
+</script>
+</body>
+</html>
