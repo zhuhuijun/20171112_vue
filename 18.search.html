@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>百度搜索</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="bootstrap.css">
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="container" style="margin-top: 10px;">
+        <div class="row">
+            <div class="col-md-11">
+                <form role="form">
+                    <div class="form-group">
+                        <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount"
+                                   v-model="query" @keyup="search" @keydown.down="down" @keydown.up.prevent="up">
+                            <div class="input-group-addon">查询</div>
+                        </div>
+                    </div>
+                </form>
+                <ul class="list-group" v-cloak>
+                    <li v-for="(data,key) in datas" class="list-group-item" :class="{active:index==key}">{{data}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="vue2.js"></script>
+<script type="text/javascript" src="vue-resource.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            query: '',
+            datas: [],
+            index: -1
+        },
+        methods: {
+            down() {
+                if (this.index === this.datas.length - 1) {
+                    this.index = 0;
+                } else {
+                    this.index++;
+
+                }
+                this.query = this.datas[this.index];
+            },
+            up() {
+                if (this.index === 0) {
+                    this.index = this.datas.length - 1;
+                } else {
+                    this.index--;
+
+                }
+                this.query = this.datas[this.index];
+            },
+            search(e) {
+                var keycode = e.keyCode;
+                if (keycode == 38 || keycode == 40) return;
+                if (keycode ==13){
+                    return window.open("https://www.baidu.com/s?wd="+this.query);
+                }
+                this.$http.jsonp('https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',
+                    {
+                        params: {
+                            wd: this.query
+                        },
+                        jsonp: 'cb'
+                    }).then(res => {
+                    var datas = res.body.s;
+                    this.datas = datas;
+                });
+            }
+        }
+    })
+
+</script>
+</body>
+</html>
