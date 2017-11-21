@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>指令</title>
+    <link rel="stylesheet" href="animate.css">
+    <style>
+        .flag{
+            border: 1px solid red;
+            width: 100px;
+            height: 100px;
+            background: blue;
+        }
+       /* .fly-transition{
+            -webkit-transition: 1s linear;
+        }
+        .fly-enter{
+            width: 0px;
+            opacity: 0;
+        }
+        .fly-leave{
+            width: 100px;
+            opacity: 0;
+        }*/
+    </style>
+</head>
+<body>
+<div id="app">
+    <button @click="flag=!flag">显示/隐藏</button>
+    <div v-show="flag" class="flag animated" transition="fly">
+        盒子
+    </div>
+</div>
+<script src="../vue1.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data:{
+            flag:true
+        },
+        transitions:{
+            fly:{
+                enterClass:'fadeInUp',
+                leaveClass:'fadeOutDown'
+            }
+        }
+    });
+</script>
+</body>
+</html>

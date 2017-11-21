@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件</title>
+</head>
+<body>
+<div id="app">
+    <hello></hello>
+</div>
+<div id="app1">
+    <hello></hello>
+</div>
+<script type="text/javascript" src="../vue2.js"></script>
+<script type="text/javascript">
+    //组件，全局组件 就近组件
+//    var eet = Vue.extend({
+//        template: '<h1>hell,world</h1>'
+//    });
+//    Vue.component('hello',eet);
+    Vue.component('hello',{
+        template: '<h1>{{msg}},world</h1>',
+        //组件中data是一个函数
+        data(){
+            return {
+                msg:'hello'
+            }
+        }
+    });
+
+    var vm = new Vue({
+        el: '#app'
+    });
+
+    var vm = new Vue({
+        el: '#app1'
+    });
+</script>
+</body>
+</html>

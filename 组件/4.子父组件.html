@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>局部组件</title>
+</head>
+<body>
+<div id="app">
+    <parent></parent>
+</div>
+<template id="tmpl">
+    <div><h1>parent{{name}}--{{age}}</h1>
+        <child @s="p"></child>
+    </div>
+</template>
+<script type="text/javascript" src="../vue2.js"></script>
+<script type="text/javascript">
+
+    var vm = new Vue({
+        el: '#app',
+        components: {
+            parent: {
+                template: '#tmpl',
+                data() {
+                    return {
+                        name: 'zhuhj',
+                        age: 0
+                    }
+                },
+                methods: {
+                    p(data) {
+                        this.age = data;
+                    }
+                },
+                components: {
+                    child: {
+                        template: '<h1 @click="sayAge">children---{{age}}</h1>',
+                        data() {
+                            return {
+                                age: 18
+                            }
+                        },
+                        methods: {
+                            sayAge() {
+                                //向上发射 emit
+                                this.$emit('s', this.age);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>

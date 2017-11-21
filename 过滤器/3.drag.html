@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>指令</title>
+    <style>
+        .drag{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div v-drag class="drag"></div>
+</div>
+<script src="../vue2.js" type="text/javascript"></script>
+<script type="text/javascript">
+    Vue.directive('drag',function(el,binding){
+        console.info(binding);
+        el.onmousedown=function(e){
+            var disX = e.pageX -el.offsetLeft;
+            var disY = e.pageY -el.offsetTop;
+
+            document.onmousemove=function (e) {
+                el.style.left = e.pageX -disX+'px';
+                el.style.top = e.pageY -disY+'px';
+            }
+            document.onmouseup = function(e){
+                document.onmousemove = document.onmouseup= null;
+            }
+            e.preventDefault();
+        };
+    });
+    var vm = new Vue({
+        el: '#app',
+        data:{
+            msg:'red'
+        }
+    });
+</script>
+</body>
+</html>

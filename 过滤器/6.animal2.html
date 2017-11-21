@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>指令</title>
+    <style>
+        .flag {
+            border: 1px solid red;
+            width: 200px;
+            height: 200px;
+            background: blue;
+        }
+
+        /* .fly-transition{
+             -webkit-transition: 1s linear;
+         }
+         .fly-enter{
+             width: 0px;
+             opacity: 0;
+         }
+         .fly-leave{
+             width: 100px;
+             opacity: 0;
+         }*/
+        /*fly-enter初始化 fly-enter-active*/
+        /*fly-leave初始化 fly-leave-active*/
+        .fly-enter{
+            width: 100px;
+            height: 100px;
+        }
+        .fly-enter-active{
+            -webkit-transition: 1s linear;
+        }
+        .fly-leave-active{
+            width: 100px;
+            height:100px;
+            -webkit-transition: 1s linear;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <button @click="flag=!flag">显示/隐藏</button>
+    <transition name="fly">
+        <div v-show="flag" class="flag">
+            盒子
+        </div>
+    </transition>
+
+</div>
+<script src="../vue2.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            flag: true
+        }
+    });
+</script>
+</body>
+</html>

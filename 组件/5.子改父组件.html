@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>局部组件</title>
+</head>
+<body>
+<div id="app">
+    <parent></parent>
+</div>
+<template id="tmpl">
+    <div><h1>parent----{{name.name}}</h1>
+        <child :n="name"></child>
+        <p>1.0:n.sync </p>
+    </div>
+</template>
+<script type="text/javascript" src="../vue2.js"></script>
+<script type="text/javascript">
+
+    var vm = new Vue({
+        el: '#app',
+        components: {
+            parent: {
+                template: '#tmpl',
+                data() {
+                    return {
+                        name: {name:'zhuhj'}
+                    }
+                },
+                components: {
+                    child: {
+                        template: '<h1 @click="update">children----{{n.name}}</h1>',
+                        props:{n:Object},
+                        methods:{
+                            update(){
+                                this.n.name='linqq';//该孩子不能改父组件
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>

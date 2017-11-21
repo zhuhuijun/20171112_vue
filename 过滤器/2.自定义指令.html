@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>指令</title>
+</head>
+<body>
+<div id="app">
+    <div v-border="msg">我是蓝色边框</div>
+</div>
+<script src="../vue2.js" type="text/javascript"></script>
+<script type="text/javascript">
+  /*  Vue.directive('border',function(param){
+        console.info(param);
+        this.el.style.border="1px solid "+param;
+    });*/
+    Vue.directive('border',function(el,binding){
+        console.info(binding);
+        el.style.border="1px solid "+binding.value;
+    });
+    var vm = new Vue({
+        el: '#app',
+        data:{
+            msg:'red'
+        }
+    });
+</script>
+</body>
+</html>

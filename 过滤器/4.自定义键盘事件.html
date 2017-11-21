@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>指令</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" @keydown.f1="up">
+</div>
+<script src="../vue2.js" type="text/javascript"></script>
+<script type="text/javascript">
+    //Vue.directive('on').keyCodes.f1 =112;
+    Vue.config.keyCodes.f1 =112;
+    var vm = new Vue({
+        el: '#app',
+        data:{
+            msg:'red'
+        },
+        methods:{
+            f1(){
+                alert('f1:');
+            }
+        }
+    });
+</script>
+</body>
+</html>

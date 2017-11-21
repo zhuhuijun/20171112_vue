@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>局部组件</title>
+</head>
+<body>
+<div id="app">
+    <parent></parent>
+</div>
+<template id="tmpl">
+    <div><h1>parent{{name}}</h1>
+        <child :n="name"></child>
+    </div>
+</template>
+<script type="text/javascript" src="../vue2.js"></script>
+<script type="text/javascript">
+
+    var vm = new Vue({
+        el: '#app',
+        components: {
+            parent: {
+                template: '#tmpl',
+                data() {
+                    return {
+                        name: 'zhuhj'
+                    }
+                },
+                components: {
+                    child: {
+                        template: '<h1>children----{{n}}</h1>',
+                        props:{n:String}
+                    }
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>

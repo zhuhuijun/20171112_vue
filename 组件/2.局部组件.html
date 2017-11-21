@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>局部组件</title>
+</head>
+<body>
+<div id="app">
+    <hello></hello>
+</div>
+<script type="text/javascript" src="../vue2.js"></script>
+<script type="text/javascript">
+
+    var vm = new Vue({
+        el: '#app',
+        components:{
+            hello:{
+                template:'<h1>hello,world---{{name}}</h1>',
+                data(){
+                    return {
+                        name:'zhuhj'
+                    }
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>
