@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <hello>
+        <div slot="brand">zhuhj</div>
+        <div slot="age">30</div>
+    </hello>
+</div>
+<template id="hello">
+    <div>hello<slot name="age"></slot><slot name="brand"></slot></div>
+</template>
+<script type="text/javascript" src="../vue2.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            comp: 'hello'
+        },
+        components: {
+            hello: {
+                template: '#hello'
+            }
+        }
+    });
+</script>
+</body>
+</html>
