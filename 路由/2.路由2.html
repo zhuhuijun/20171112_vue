@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .router-link-active {
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <router-link to="/home">首页</router-link>
+    <router-link to="/list">列表</router-link>
+    <router-view></router-view>
+</div>
+<script src="vue2.js" type="text/javascript"></script>
+<script src="vue-router2.js" type="text/javascript"></script>
+<template id="home">
+    <div>
+        <h1>home---------------------></h1>
+        <router-link to="/home/login">login</router-link>
+        <router-link to="/home/reg">reg</router-link>
+        <router-view></router-view>
+    </div>
+</template>
+<template id="list">
+    <h1>list---------------------></h1>
+</template>
+<script type="text/javascript">
+
+    var Home = {
+        template: '#home'
+    };
+    var List = {
+        template: '#list'
+    };
+    var router = new VueRouter({
+        routes: [
+            {path: '/home', component: Home,
+                children:[
+                    {path:'login',component:{template:'<h1>login</h1>'}},
+                    {path:'reg',component:{template:'<h1>reg</h1>'}}
+                ]},
+            {path: '/list', component: List},
+            {path: '*', component: Home}
+        ]
+    });
+    var App = new Vue({
+        router,
+        el: '#app'
+    })
+</script>
+</body>
+</html>

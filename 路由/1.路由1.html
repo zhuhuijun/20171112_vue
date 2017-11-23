@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .v-link-active {
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <a v-link="{path:'/home'}">首页</a>
+    <a v-link="{path:'/list'}">列表</a>
+    <router-view></router-view>
+</div>
+<script src="vue1.js" type="text/javascript"></script>
+<script src="vue-router1.js" type="text/javascript"></script>
+<template id="home">
+    <h1>home---------------------></h1>
+    <a v-link="{path:'/home/login'}">login</a>
+    <a v-link="{path:'/home/reg'}">reg</a>
+    <router-view></router-view>
+</template>
+<template id="list">
+    <h1>list---------------------></h1>
+    <a v-link="{path:'/list/news/1'}">new1</a>
+    <a v-link="{path:'/list/news/2'}">new2</a>
+    <router-view></router-view>
+</template>
+<script type="text/javascript">
+    var App = {};
+    var router = new VueRouter;
+    router.map({
+        '/home': {
+            component: {
+                template: "#home"
+            },
+            subRoutes: {
+                '/login': {
+                    component: {
+                        template: 'login'
+                    }
+                },
+                '/reg': {
+                    component: {
+                        template: 'reg'
+                    }
+                }
+            }
+        },
+        '/list': {
+            component: {
+                template: "#list"
+            }, subRoutes: {
+                '/news/:id': {
+                    component: {
+                        template: '<div>msg{{$route.params.id}}{{$route.query| json}}{{$route.path}}</div>',
+                        route: {
+                            data(transition) {
+                                console.info(transition);
+                                console.info('route id:%s',this.$route.params.id);
+                                console.info('query:%s',this.$route.query);
+                                console.info('path:%s',this.$route.path);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    });
+    router.start(App, "#app");
+    //默认跳转
+    router.redirect({
+        '/': 'home'
+    })
+</script>
+</body>
+</html>
